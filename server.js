@@ -13,21 +13,18 @@ connectDB();
 const app = express();
 
 app.use(cors());
-app.use(helmet.hidePoweredBy());
+// app.use(helmet.hidePoweredBy());
 app.use(morgan("tiny"));
 app.use(express.json());
 
-// if(process.env.NODE_ENV === "production"){
-//     app.use(express.static(path.resolve(__dirname, "./client/build")));
-
-// }
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-  });
-  
 app.use('/user', userRoute);
 
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "./client/build")));
+    app.get("*", function (request, response) {
+        response.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+      });
+}
 
 app.listen(PORT, (err, res)=>{
     if(err) return err;
