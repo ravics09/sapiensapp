@@ -1,14 +1,14 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:9090/user";
+// const BASE_URL = "http://localhost:9090/user";
 
-export let axiosObject = axios.create({
-  baseURL: BASE_URL,
-  timeout: 10000,
-});
+// export let axiosObject = axios.create({
+//   baseURL: BASE_URL,
+//   timeout: 10000,
+// });
 
 const logIn = async (user) => {
-  return axiosObject
-    .post("/login", user)
+  return axios
+    .post("/user/login", user)
     .then((response) => {
       console.log("response of login", response);
       if (response.data.status === 200) {
@@ -36,8 +36,8 @@ const setTheme = async (themePreferenece) => {
   let user = {
     color: themePreferenece.color,
   };
-  return axiosObject
-    .put(`/settheme/${themePreferenece.id}`, user)
+  return axios
+    .put(`/user/settheme/${themePreferenece.id}`, user)
     .then((response) => {
       if (response.data.status === 200) {
         localStorage.setItem("themeColor", JSON.stringify(response.data.color));
