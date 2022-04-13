@@ -1,7 +1,7 @@
-const path = require("path")
+const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
-const helmet  = require("helmet")
+const helmet = require("helmet");
 const express = require("express");
 
 const connectDB = require("./config/connectDB");
@@ -12,21 +12,26 @@ connectDB();
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 // app.use(helmet.hidePoweredBy());
 app.use(morgan("tiny"));
 app.use(express.json());
 
-app.use('/user', userRoute);
+app.use("/user", userRoute);
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, "./client/build")));
-    app.get("*", function (request, response) {
-        response.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-      });
-}
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join(__dirname, "./client/build")));
+//     app.get("*", function (request, response) {
+//         response.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+//       });
+// }
 
-app.listen(PORT, (err, res)=>{
-    if(err) return err;
-    else console.log(`Server is running on port number ${PORT}`);
-})
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (request, response) {
+  response.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+app.listen(PORT, (err, res) => {
+  if (err) return err;
+  else console.log(`Server is running on port number ${PORT}`);
+});
