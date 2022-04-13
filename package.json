@@ -1,0 +1,35 @@
+{
+  "name": "sapiensapp",
+  "version": "1.0.0",
+  "description": "Sapiensassignment",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently -n 'server,client' -c 'red,green'  \"nodemon server.js\" \"npm run client\""
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravics09/sapiensapp.git"
+  },
+  "author": "Ravi Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ravics09/sapiensapp/issues"
+  },
+  "homepage": "https://github.com/ravics09/sapiensapp#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "mongoose": "^6.2.10",
+    "morgan": "^1.10.0"
+  }
+}
