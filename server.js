@@ -1,7 +1,7 @@
 const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const express = require("express");
 
 const connectDB = require("./config/connectDB");
@@ -18,13 +18,6 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 app.use("/user", userRoute);
-
-// if(process.env.NODE_ENV === "production"){
-//     app.use(express.static(path.join(__dirname, "./client/build")));
-//     app.get("*", function (request, response) {
-//         response.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-//       });
-// }
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", function (request, response) {
