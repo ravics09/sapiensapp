@@ -8,7 +8,7 @@ const connectionParams = {
 };
 
 const connectDB = () => {
-  mongoose.connect(process.env.MONGODB_URI || URI, connectionParams);
+  mongoose.connect(URI, connectionParams);
   mongoose.Promote = global.Promise;
 
   mongoose.connection.on("connected", () => {
