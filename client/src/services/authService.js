@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://localhost:9090/user";
+const BASE_URL = "http://localhost:9090/user";
 
 export let axiosObject = axios.create({
   baseURL: BASE_URL,
